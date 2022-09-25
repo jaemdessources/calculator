@@ -1,0 +1,101 @@
+ <!Doctype html>
+ <html>
+
+ <head>
+    <meta name="author" content="Dessources Dit Dumesle Jaem Bertdge" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/index.css">
+ </head>
+
+ <body>
+
+  
+
+    <div id="calculator">
+       <header>
+          <nav>
+             <a class="pageNav" goal="nav-wrapper">Acceuil</a> |
+             <a class="pageStat" goal="stat-wrapper">Statistiques</a> |
+             <a class="pageGeo" goal="geo-wrapper">Geometrie</a> |
+             <a class="pageEqu" goal="equ-wrapper">Equations</a> |
+             <a class="pageFunc" goal="func-wrapper">Fonctions</a> |
+             <a class="pagePhy" goal="phy-wrapper">Physiques</a><br><br>
+          </nav>
+          <h2 style="position:fixed;left:2%;"> Calculatrice scientifique</h2>
+       </header>
+
+    
+  
+       <div id="stat-wrapper">
+
+          <div id="stats">
+             <div id="choix">
+                <h3> Choisissez le type de donn&eacute;es:</h3>
+                <ul>
+                   <li class="choix" id="condense?">Donn&eacute;es condens&eacute;es</li>
+                   <li class="choix" id="range?">Donn&eacute;es rang&eacute;es</li>
+                   <li class="choix" id="classe?">Donn&eacute;es class&eacute;es</li>
+                </ul>
+                <div id="results">
+                   <button id="calcul"> Resultats</button>
+                   <ul>
+                      <li>n = <span id="N"></span></li>
+                      <li>Mode = <span id="mode"></span></li>
+                      <li>M&eacute;diane = <span id="mediane"></span></li>
+                      <li>moyenne arithm&eacute;tique = <span id="moyenne"></span></li>
+                   </ul>
+                </div>
+             </div>
+             <div id="data">
+                <div id="condense"> <input type="text" id="inputCondense" /> </div>
+                <div id="range">
+                   <table id="inputRange">
+                      <thead>
+
+                         <td>Modalit&eacute;s</td>
+                         <td> effectifs </td>
+                         <td>fr&eacute;quences relatives</td>
+                         <td>fr&eacute;quences relatives cummul&eacute;es</td>
+
+                      </thead>
+                      <tbody>
+                         <tr class="modalite">
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td></td>
+                            <td></td>
+                         </tr>
+                      </tbody>
+                   </table>
+                   <p id="add">Ajouter une nouvelle ligne +</p>
+                   <p id="supr">Supprimer cette ligne -</p>
+                </div>
+                <div id="classe">
+                   <table id="inputClasse">
+                      <thead>
+
+                         <td>Modalit&eacute;s</td>
+                         <td>effectifs</td>
+                         <td>fr&eacute;quences relatives</td>
+                         <td>fr&eacute;quences relatives cummul&eacute;es</td>
+
+                      </thead>
+                      <tbody>
+                         <tr>
+                            <td contenteditable="true"></td>
+                            <td contenteditable="true"></td>
+                            <td></td>
+                            <td></td>
+                         </tr>
+                      </tbody>
+                   </table>
+                </div>
+             </div>
+
+          </div>
+       </div>
+       <script src="../js/index.js"></script>
+ </body>
+
+ </html>

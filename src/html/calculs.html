@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="author" content="Dessources Dit Dumesle Jaem Bertdge" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/calculs.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <a target="_blank" href="index.html">Acceuil</a> |
+        <a href="statistiques.html">Statistiques</a> |
+        <a href="geometrie.html">Geometrie</a> |
+        <a href="equations.html">Equations</a> |
+        <a href="fonctions.html">Fonctions</a> |
+        <a href="physiques.html">Physiques</a><br /><br />
+      </nav>
+      <h2 style="position:fixed;left:2%;">Calculatrice scientifique</h2>
+    </header>
+    <div id="calculator">
+      <span id="ang">D</span>
+      <input type="text" name="saisie" id="saisie" value="0" /><br />
+      <div id="sortie"></div>
+      <span id="switch">Historique &#8594;</span>
+      <div id="buttons">
+        <div id="masterButtons">
+          <button id="shift">SHIFT</button>
+        </div>
+        <div id="numberButtons">
+          <div class="numberButton" value="9">9</div>
+          <div class="numberButton" value="8">8</div>
+          <div class="numberButton" value="7">7</div>
+          <div class="numberButton" value="6">6</div>
+          <div class="numberButton" value="5">5</div>
+          <div class="numberButton" value="4">4</div>
+          <div class="numberButton" value="3">3</div>
+          <div class="numberButton" value="2">2</div>
+          <div class="numberButton" value="1">1</div>
+          <div class="numberButton" value="0">0</div>
+          <div class="numberButton" value=".">.</div>
+          <div class="numberButton" value="E">EXP</div>
+        </div>
+        <div id="operatorButtons">
+          <div id="del" class="operatorButton">DEL</div>
+          <div id="ac" class="operatorButton">C</div>
+          <div id="mult" class="operatorButton" value=" * ">*</div>
+          <div id="div" class="operatorButton" value=" / ">/</div>
+          <div id="plus" class="operatorButton" value=" + ">+</div>
+          <div id="moins" class="operatorButton" value=" - ">-</div>
+          <div id="Ans" class="operatorButton" value="Ans">Ans</div>
+          <div id="egal" value=" =">=</div>
+        </div>
+      </div>
+    </div>
+
+    <ul id="historique">
+      <h5>Historique</h5>
+      <span>&#215;</span>
+      <div id="operations"></div>
+    </ul>
+    <script src="../js/fonctions.js"></script>
+    <script src="../js/calculs.js"></script>
+  </body>
+</html>

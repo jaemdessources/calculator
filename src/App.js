@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import Calculator from "./components/Calculator";
+import parse from "./lib/parse";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  // const [input, setInput] = useState("");
+  // console.log(input);
+  // const evaluation = (x) => {
+  //   try {
+  //     let ans = eval(x);
+  //     return ans;
+  //   } catch {}
+  // };
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>The calculator</h1>
       </header>
+      <main>
+        <Calculator />
+      </main>
     </div>
   );
 }

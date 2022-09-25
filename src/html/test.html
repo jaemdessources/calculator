@@ -1,0 +1,127 @@
+
+<head>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<div id="calc-wrapper">
+    <header>
+       <nav>
+          <a class="pageNav" goal="nav-wrapper">Acceuil</a> |
+          <a class="pageStat" goal="stat-wrapper">Statistiques</a> |
+          <a class="pageGeo" goal="geo-wrapper">Geometrie</a> |
+          <a class="pageEqu" goal="equ-wrapper">Equations</a> |
+          <a class="pageFunc" goal="func-wrapper">Fonctions</a> |
+          <a class="pagePhy" goal="phy-wrapper">Physiques</a><br><br>
+       </nav>
+       <h2> Calculatrice scientifique</h2>
+    </header>
+
+    <div id="calculator">
+       
+        <span id="ang">D</span>
+       <input type="text" name="saisie" id="saisie" value="0" /><br>
+       <div id="sortie"></div>
+
+       <div id="buttons">
+          <div id="numberButtons">
+             <div class="numberButton" value="9"> 9 </div>
+             <div class="numberButton" value="8"> 8 </div>
+             <div class="numberButton" value="7"> 7 </div>
+             <div class="numberButton" value="6"> 6 </div>
+             <div class="numberButton" value="5"> 5 </div>
+             <div class="numberButton" value="4"> 4 </div>
+             <div class="numberButton" value="3"> 3 </div>
+             <div class="numberButton" value="2"> 2 </div>
+             <div class="numberButton" value="1"> 1 </div>
+             <div class="numberButton" value="0"> 0 </div>
+             <div class="numberButton" value="."> . </div>
+             <div class="numberButton" value="E">EXP</div>
+          </div>
+          <div id="operatorButtons">
+             <div id="del" class="operatorButton">DEL</div>
+             <div id="ac" class="operatorButton"> C</div>
+             <div id="mult" class="operatorButton" value=" * "> * </div>
+             <div id="div" class="operatorButton" value=" / "> / </div>
+             <div id="plus" class="operatorButton" value=" + "> + </div>
+             <div id="moins" class="operatorButton" value=" - "> - </div>
+             <div id="Ans" class="operatorButton" value="Ans"> Ans </div>
+             <div id="egal" value=" ="> = </div>
+          </div>
+          <div id="functionButtons">
+             <div class="functionButton" value="(" scd="0">
+                <div> ( </div>
+             </div>
+             <div class="functionButton" value=")" scd="0">
+                <div> ) </div>
+             </div>
+             <div class="functionButton" value="-" scd="0">
+                <div value="-"> +/-</div>
+             </div>
+             <div class="functionButton" value="^-1" value1="!" scd="">
+                <span>x!</span>
+                <div>x<sup>-1</sup></div>
+             </div>
+             <div class="functionButton" value="C" value1="A" scd="">
+                <span>pAn</span>
+                <div>pCn</div>
+             </div>
+             <div class="functionButton" value="&sup2;" scd="0">
+                <div>x&sup2;</div>
+             </div>
+             <div class="functionButton" value="&#8730;" scd="0">
+                <div value="&#8730;">&#8730;x</div>
+             </div>
+             <div class="functionButton" value="&sup3;" scd="0">
+                x&sup3;
+             </div>
+             <div class="functionButton" value="&sup3;&#8730;" scd="0">
+                &sup3;&#8730;x
+             </div>
+
+             <div class="functionButton" value="^" scd="0">
+                x<sup>y</sup>
+             </div>
+             <div class="functionButton" value="&#170&#8730" scd="0">
+                &#170;&#8730;x
+             </div>
+
+             <div class="functionButton" value="sin " value1="sin&#45;&sup1; " scd="">
+                <span>sin<sup>-1</sup></span>
+                <div>sin</div>
+             </div>
+             <div class="functionButton" value="cos " value1="cos&#45;&sup1; " scd="">
+                <span>cos<sup>-1</sup></span>
+                <div>cos</div>
+             </div>
+             <div class="functionButton" value="tan " value1="tan&#45;&sup1; " scd="">
+                <span>tan<sup>-1</sup></span>
+                <div>tan</div>
+             </div>
+             <div class="functionButton" value="ln " value1="e" scd="">
+                <span>e<sup>x</sup></span>
+                <div>ln</div>
+             </div>
+             <div class="functionButton" value="log " scd="0">
+                <div>log</div>
+             </div>
+             <div class="functionButton" value="&#8519;" scd="0">
+                <div>&#8519;</div>
+             </div>
+
+             <div class="functionButton" value="&#x3C0;" scd="0">
+                <div>&#x3C0;</div>
+             </div>
+             <div class="functionButton" value="" scd="0">
+                <div>D R G</div>
+             </div>
+             <div class="functionButton" id="deg" scd="0">
+                &deg; ' "
+             </div>
+             <div class="functionButton" value=" % " scd="0">
+                <div>%</div>
+             </div>
+          </div>
+
+       </div>
+    </div>
+
+ </div>
