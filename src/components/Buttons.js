@@ -9,7 +9,18 @@ import Parenthesis from "./Parenthesis";
 import Percent from "./Percent";
 import CE from "./CE";
 import Facotrial from "./Factorial";
-
+import Shift from "./Shift";
+import Sin from "./Sin"
+import Ln from "./Ln"
+import Pi from "./Pi"
+import Cos from "./Cos"
+import Log from "./Log"
+import E from "./E"
+import Tan from "./Tan"
+import Sqrt from "./Sqrt"
+import Ans from "./Ans"
+import Exp from "./Sin"
+import Pow from "./Pow"
 const Buttons = () => {
   return (
     <Container cellpadding="0" cellspacing="0">
@@ -19,32 +30,33 @@ const Buttons = () => {
       <Parenthesis type={")"} />
       <Percent role={"%"} />
       <CE />
-      <Key role={"SHIFT"} />
-      <Key role={"sine"} /> <Key role={"ln"} />
+      <Shift/>
+      <Sin/> 
+      <Ln/>
       <Digit digit={"7"} />
       <Digit digit={"8"} />
       <Digit digit={"9"} />
       <Operator sign={"÷"} />
-      <Key role={"pi"} />
-      <Key role={"cosine"} />
-      <Key role={"log"} />
+      <Pi/>
+      <Cos/>
+      <Log  />
       <Digit digit={"4"} />
       <Digit digit={"5"} />
       <Digit digit={"6"} />
       <Operator sign={"×"} />
-      <Key role={"e"} />
-      <Key role={"tangent"} />
-      <Key role={"sqrt"} />
+      <E/>
+      <Tan />
+      <Sqrt />
       <Digit digit={"1"} />
       <Digit digit={"2"} />
       <Digit digit={"3"} />
       <Operator sign={"-"} />
-      <Key role={"ANS"} />
-      <Key role={"EXP"} />
-      <Key role={"power"} />
+      <Ans/>
+      <Exp/>
+      <Pow />
       <Digit digit={"0"} />
       <DecimalPoint />
-      <Eq role={"="} />
+      <Eq  />
       <Operator sign={"+"} />
     </Container>
   );
@@ -53,18 +65,14 @@ const Buttons = () => {
 export default Buttons;
 
 const Container = styled.div`
-  margin-top: 0.25rem;
+  margin-top: 0.625rem;
   margin-bottom: 0.5rem;
   width: 100%;
   border: 0;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  grid-gap: 0.5rem;
+  grid-gap: 0.625rem 0.5rem;
 
-  .eq {
-    background: #8ab4f8;
-    color: #202124;
-    font-weight: bold;
-  }
+
 `;
