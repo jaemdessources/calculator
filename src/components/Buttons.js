@@ -1,158 +1,63 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Buttons = () => {
-  const AngleUnit = {
-    rad: {
-      position: "relative",
-      transform: "translateX(25%)",
-    },
-    deg: {
-      position: "relative",
-      left: "75%",
-      transform: "translateX(-25%)",
-    },
-  };
-  return (
-    <Container>
-      <tbody>
-        <tr>
-          <td colSpan={2}>
-            <KeyGroup>
-              <Key style={AngleUnit.rad} role={"Rad"} />
-              <Divider></Divider>
-              <Key style={AngleUnit.deg} role={"Deg"} />
-            </KeyGroup>
-          </td>
-          <td>
-            <Key role={"factorial"} />
-          </td>
-          <td>
-            <Key role={"("} />
-          </td>
-          <td>
-            <Key role={")"} />
-          </td>
-          <td>
-            <Key role={"%"} />
-          </td>
-          <td>
-            <Key role={"CE"} />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            {" "}
-            <Key role={"SHIFT"} />
-          </td>
-          <td>
-            <Key role={"sine"} />
-          </td>
-          <td>
-            {" "}
-            <Key role={"ln"} />
-          </td>
+import AngleUnitSwitch from "./AngleUnitSwitch";
+import Eq from "./Eq";
 
-          <td>
-            <Key role={"7"} />
-          </td>
-          <td>
-            <Key role={"8"} />
-          </td>
-          <td>
-            <Key role={"9"} />
-          </td>
-          <td>
-            <Key role={"÷"} />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <Key role={"pi"} />
-          </td>
-          <td>
-            <Key role={"cosine"} />
-          </td>
-          <td>
-            <Key role={"log"} />
-          </td>
-          <td>
-            <Key role={"4"} />
-          </td>
-          <td>
-            <Key role={"5"} />
-          </td>
-          <td>
-            <Key role={"6"} />
-          </td>
-          <td>
-            <Key role={"×"} />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <Key role={"e"} />
-          </td>
-          <td>
-            <Key role={"tangent"} />
-          </td>
-          <td>
-            <Key role={"sqrt"} />
-          </td>
-          <td>
-            <Key role={"1"} />
-          </td>
-          <td>
-            <Key role={"2"} />
-          </td>
-          <td>
-            <Key role={"3"} />
-          </td>
-          <td>
-            <Key role={"-"} />
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <Key role={"ANS"} />
-          </td>
-          <td>
-            <Key role={"EXP"} />
-          </td>
-          <td>
-            <Key role={"power"} />
-          </td>
-          <td>
-            <Key role={"0"} />
-          </td>
-          <td>
-            <Key role={"."} />
-          </td>
-          <td>
-            <Key role={"="} />
-          </td>
-          <td>
-            <Key role={"+"} />
-          </td>
-        </tr>
-      </tbody>
+const Buttons = () => {
+  return (
+    <Container cellpadding="0" cellspacing="0">
+      <AngleUnitSwitch role={"?"} />
+      <Key role={"factorial"} />
+      <Key role={"("} />
+      <Key role={")"} />
+      <Key role={"%"} />
+      <Key role={"CE"} />
+      <Key role={"SHIFT"} />
+      <Key role={"sine"} /> <Key role={"ln"} />
+      <Key role={"7"} />
+      <Key role={"8"} />
+      <Key role={"9"} />
+      <Key role={"÷"} />
+      <Key role={"pi"} />
+      <Key role={"cosine"} />
+      <Key role={"log"} />
+      <Key role={"4"} />
+      <Key role={"5"} />
+      <Key role={"6"} />
+      <Key role={"×"} />
+      <Key role={"e"} />
+      <Key role={"tangent"} />
+      <Key role={"sqrt"} />
+      <Key role={"1"} />
+      <Key role={"2"} />
+      <Key role={"3"} />
+      <Key role={"-"} />
+      <Key role={"ANS"} />
+      <Key role={"EXP"} />
+      <Key role={"power"} />
+      <Key role={"0"} />
+      <Key role={"."} />
+      <Eq role={"="} />
+      <Key role={"+"} />
     </Container>
   );
 };
 
 export default Buttons;
 
-const Container = styled.table`
+const Container = styled.div`
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
   width: 100%;
-`;
-const KeyGroup = styled.div`
-  position: relative;
-`;
-const Divider = styled.div`
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 1px;
-  bottom: 1px;
-  border-left: 1px solid #bdc1c6;
-  transform: translateX(-50%);
+  border: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 0.5rem;
+
+  .eq {
+    background: #8ab4f8;
+    color: #202124;
+    font-weight: bold;
+  }
 `;

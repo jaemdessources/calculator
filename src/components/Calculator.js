@@ -15,6 +15,10 @@ const Calculator = () => {
 export default Calculator;
 
 const Container = styled.div`
-  width: 36rem;
+  width: 40.75rem;
   margin: 2rem auto;
+
+  hr {
+    margin: auto;
+  }
 `;
