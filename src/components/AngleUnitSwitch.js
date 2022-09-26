@@ -14,7 +14,7 @@ export default AngleUnitSwitch;
 
 const Container = styled.div`
   grid-column: 1 / 3;
-  height: 2rem;
+  height: 2.25rem;
   background: #5f6368;
   border-radius: 4px;
   font-size: 0.875rem;
@@ -30,12 +30,18 @@ const Container = styled.div`
     left: 25%;
     transform: translateX(-50%);
     display: inline-block;
+    height: 100%;
+    width: 50%;
+    text-align: center;
   }
   .deg {
     position: relative;
     display: inline-block;
-    left: 50%;
-    transform: translateX(25%);
+    left: 25%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 50%;
+    text-align: center;
   }
 `;
 

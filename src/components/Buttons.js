@@ -2,43 +2,50 @@ import styled from "styled-components";
 import Key from "./Key";
 import AngleUnitSwitch from "./AngleUnitSwitch";
 import Eq from "./Eq";
+import Operator from "./Operator";
+import Digit from "./Digit";
+import DecimalPoint from "./DecimalPoint";
+import Parenthesis from "./Parenthesis";
+import Percent from "./Percent";
+import CE from "./CE";
+import Facotrial from "./Factorial";
 
 const Buttons = () => {
   return (
     <Container cellpadding="0" cellspacing="0">
-      <AngleUnitSwitch role={"?"} />
-      <Key role={"factorial"} />
-      <Key role={"("} />
-      <Key role={")"} />
-      <Key role={"%"} />
-      <Key role={"CE"} />
+      <AngleUnitSwitch />
+      <Facotrial />
+      <Parenthesis type={"("} />
+      <Parenthesis type={")"} />
+      <Percent role={"%"} />
+      <CE />
       <Key role={"SHIFT"} />
       <Key role={"sine"} /> <Key role={"ln"} />
-      <Key role={"7"} />
-      <Key role={"8"} />
-      <Key role={"9"} />
-      <Key role={"÷"} />
+      <Digit digit={"7"} />
+      <Digit digit={"8"} />
+      <Digit digit={"9"} />
+      <Operator sign={"÷"} />
       <Key role={"pi"} />
       <Key role={"cosine"} />
       <Key role={"log"} />
-      <Key role={"4"} />
-      <Key role={"5"} />
-      <Key role={"6"} />
-      <Key role={"×"} />
+      <Digit digit={"4"} />
+      <Digit digit={"5"} />
+      <Digit digit={"6"} />
+      <Operator sign={"×"} />
       <Key role={"e"} />
       <Key role={"tangent"} />
       <Key role={"sqrt"} />
-      <Key role={"1"} />
-      <Key role={"2"} />
-      <Key role={"3"} />
-      <Key role={"-"} />
+      <Digit digit={"1"} />
+      <Digit digit={"2"} />
+      <Digit digit={"3"} />
+      <Operator sign={"-"} />
       <Key role={"ANS"} />
       <Key role={"EXP"} />
       <Key role={"power"} />
-      <Key role={"0"} />
-      <Key role={"."} />
+      <Digit digit={"0"} />
+      <DecimalPoint />
       <Eq role={"="} />
-      <Key role={"+"} />
+      <Operator sign={"+"} />
     </Container>
   );
 };

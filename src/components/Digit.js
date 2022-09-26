@@ -1,19 +1,19 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Eq = () => {
+const Digit = ({ digit }) => {
   return (
     <Key>
-      <Container>=</Container>
+      <Container>{digit}</Container>
     </Key>
   );
 };
 
-export default Eq;
+export default Digit;
 
 const Container = styled.div`
   line-height: 2.125rem;
-  color: #202124;
-  background: #8ab4f8;
-  font-weight: bold;
+  color: #e8eaed;
+  background: #3c4043;
   border-radius: 0.25rem;
+  font-size: 0.875rem;
 `;
