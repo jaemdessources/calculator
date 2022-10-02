@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import Key from "./Key";
+import input from "../lib/input";
 const Pi = () => {
+  const clickHandler = () => {
+    input("π");
+  };
   return (
     <Key>
-      <Container>Pi</Container>
+      <Container onClick={clickHandler}>π</Container>
     </Key>
   );
 };
@@ -17,4 +21,7 @@ const Container = styled.div`
   font-size: 0.875rem;
   color: #e8eaed;
   border-radius: 0.25rem;
+  &:hover {
+    background: #70757a;
+  }
 `;

@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Ans = () => {
+const Ans = ({ inverse }) => {
   return (
     <Key>
-      <Container>Ans</Container>
+      <Container className={inverse && "off"}>Ans</Container>
+      <Container className={`${!inverse ? "off" : ""}`}>Rnd</Container>
     </Key>
   );
 };
@@ -17,4 +18,7 @@ const Container = styled.div`
   font-size: 0.875rem;
   color: #e8eaed;
   border-radius: 0.25rem;
+  &:hover {
+    background: #70757a;
+  }
 `;

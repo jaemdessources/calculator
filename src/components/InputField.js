@@ -1,9 +1,15 @@
+import { useRef } from "react";
 import styled from "styled-components";
+
+let inputFieldRef;
 const InputField = () => {
-  return <Field>4</Field>;
+  const InputRef = useRef(null);
+  inputFieldRef = InputRef;
+  return <Field ref={InputRef}>0</Field>;
 };
 
 export default InputField;
+export { inputFieldRef };
 
 const Field = styled.div`
   grid-column: 2 / 3;
@@ -12,5 +18,7 @@ const Field = styled.div`
   margin-right: 0.5rem;
   font-size: 30px;
   text-align: right;
+  align-items: end;
+  align-self: end;
   color: #e8eaed;
 `;

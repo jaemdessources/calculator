@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Cos = () => {
+const Cos = ({ inverse }) => {
   return (
     <Key>
-      <Container>cos</Container>
+      <Container className={inverse && "off"}>cos</Container>
+      <Container className={`${!inverse ? "off" : ""} inverse`}>
+        cos<sup>{"\u2212"}1</sup>
+      </Container>
     </Key>
   );
 };
@@ -17,4 +20,10 @@ const Container = styled.div`
   font-size: 0.875rem;
   color: #e8eaed;
   border-radius: 0.25rem;
+  &:hover {
+    background: #70757a;
+  }
+  /* &:focus {
+    border: 1px solid #9aa0a6;
+  } */
 `;

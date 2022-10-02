@@ -1,18 +1,8 @@
-import { useState, useEffect } from "react";
 import Calculator from "./components/Calculator";
-import parse from "./lib/parse";
 import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  // const [input, setInput] = useState("");
-  // console.log(input);
-  // const evaluation = (x) => {
-  //   try {
-  //     let ans = eval(x);
-  //     return ans;
-  //   } catch {}
-  // };
   return (
     <div className="App">
       <header className="App-header">

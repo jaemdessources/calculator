@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Sqrt = () => {
+const Sqrt = ({ inverse }) => {
   return (
     <Key>
-      <Container>Sqrt</Container>
+      <Container className={inverse && "off"}>√</Container>
+      <Container className={`${!inverse ? "off" : ""} inverse`}>
+        x<sup>2</sup>
+      </Container>
     </Key>
   );
 };
@@ -17,4 +20,7 @@ const Container = styled.div`
   font-size: 0.875rem;
   color: #e8eaed;
   border-radius: 0.25rem;
+  &:hover {
+    background: #70757a;
+  }
 `;

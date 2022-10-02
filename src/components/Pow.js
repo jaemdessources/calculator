@@ -1,9 +1,14 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Pow = () => {
+const Pow = ({ inverse }) => {
   return (
     <Key>
-      <Container>Pow</Container>
+      <Container className={inverse && "off"}>
+        x<sup>y</sup>
+      </Container>
+      <Container className={`${!inverse ? "off" : ""}`}>
+        <sup>y</sup>√x
+      </Container>
     </Key>
   );
 };
@@ -17,4 +22,11 @@ const Container = styled.div`
   font-size: 0.875rem;
   color: #e8eaed;
   border-radius: 0.25rem;
+  &:hover {
+    background: #70757a;
+  }
+
+  sup {
+    font-size: 0.5rem;
+  }
 `;

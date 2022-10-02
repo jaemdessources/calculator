@@ -1,19 +1,27 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Facotrial = ({ type }) => {
+import input from "../lib/input";
+const Factorial = ({ type }) => {
+  const clickHandler = () => {
+    input("!");
+  };
   return (
     <Key>
-      <Container>x!</Container>
+      <Container onClick={clickHandler}>x!</Container>
     </Key>
   );
 };
 
-export default Facotrial;
+export default Factorial;
 
 const Container = styled.div`
   background: #5f6368;
   line-height: 2.125rem;
-  font-size: 0.875rem;
+  height: 100%;
+  font-size: 0.8125rem;
   color: #e8eaed;
   border-radius: 0.25rem;
+  &:hover {
+    background: #70757a;
+  }
 `;

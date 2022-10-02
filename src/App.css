@@ -3,6 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  margin: 0;
+  font-family: Robot, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .App {
   height: 100vh;
   background-color: #1e1e1e;
@@ -24,7 +31,21 @@
   color: white;
 }
 
+#placeholderClosingParenthesis {
+  color: rgb(204, 204, 204);
+}
+
 hr {
   border-color: gray;
   width: 60%;
+}
+
+.off {
+  display: none;
+}
+.inverse {
+  line-height: 1.75rem !important;
+}
+sup {
+  font-size: 0.5rem;
 }

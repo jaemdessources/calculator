@@ -1,11 +1,16 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const AngleUnitSwitch = () => {
+  const [AngleUnit, setAngleUnit] = useState("rad");
+  const switchAngleUnit = () => {
+    setAngleUnit(AngleUnit === "rad" ? "deg" : "rad");
+  };
   return (
-    <Container>
-      <div className="rad">Rad</div>
+    <Container onClick={switchAngleUnit}>
+      <Rad className={AngleUnit === "rad" ? "" : "off"}>Rad</Rad>
       <Divider></Divider>
-      <div className="deg">Deg</div>
+      <Deg className={AngleUnit === "deg" ? "" : "off"}>Deg</Deg>
     </Container>
   );
 };
@@ -13,6 +18,7 @@ const AngleUnitSwitch = () => {
 export default AngleUnitSwitch;
 
 const Container = styled.div`
+  position: relative;
   grid-column: 1 / 3;
   height: 2.25rem;
   background: #5f6368;
@@ -21,27 +27,29 @@ const Container = styled.div`
   font-family: Roboto, arial, sans-serif;
   color: #e8eaed;
   line-height: 2.125rem;
-
   cursor: pointer;
+  user-select: none;
+`;
+const Rad = styled.div`
   position: relative;
-
-  .rad {
-    position: relative;
-    left: 25%;
-    transform: translateX(-50%);
-    display: inline-block;
-    height: 100%;
-    width: 50%;
-    text-align: center;
+  left: 25%;
+  transform: translateX(-50%);
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  &.off {
+    color: #9aa0a6;
   }
-  .deg {
-    position: relative;
-    display: inline-block;
-    left: 25%;
-    transform: translateX(-50%);
-    height: 100%;
-    width: 50%;
-    text-align: center;
+`;
+const Deg = styled.div`
+  position: relative;
+  display: inline-block;
+  left: 25%;
+  transform: translateX(-50%);
+  width: 50%;
+  text-align: center;
+  &.off {
+    color: #9aa0a6;
   }
 `;
 
@@ -49,8 +57,8 @@ const Divider = styled.div`
   content: "";
   position: absolute;
   left: 50%;
-  top: 5px;
-  bottom: 5px;
-  border-left: 1px solid #bdc1c6;
+  top: 0.625rem;
+  bottom: 0.625rem;
+  border-left: 0.125rem solid #bdc1c6;
   transform: translateX(-50%);
 `;
