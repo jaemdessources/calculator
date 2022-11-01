@@ -1,16 +1,10 @@
 import styled from "styled-components";
 import Key from "./Key";
 
-//lib
-import input from "../lib/input";
-const Digit = ({ digit }) => {
-  const clickHandler = () => {
-    input(digit);
-  };
-
+const Digit = ({ digit, handleClick }) => {
   return (
     <Key>
-      <Container onClick={clickHandler}>{digit}</Container>
+      <Container onClick={() => handleClick(digit)}>{digit}</Container>
     </Key>
   );
 };

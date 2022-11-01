@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import Key from "./Key";
-import input from "../lib/input";
-const Factorial = ({ type }) => {
-  const clickHandler = () => {
-    input("!");
-  };
+
+const Factorial = ({ handleClick }) => {
   return (
     <Key>
-      <Container onClick={clickHandler}>x!</Container>
+      <Container onClick={() => handleClick("!")}>x!</Container>
     </Key>
   );
 };

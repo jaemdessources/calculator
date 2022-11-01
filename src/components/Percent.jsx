@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import Key from "./Key";
-import input from "../lib/input";
-const Percent = () => {
-  const clickHandler = () => {
-    input("%");
-  };
+
+const Percent = ({ handleClick }) => {
   return (
     <Key>
-      <Container onClick={clickHandler}>%</Container>
+      <Container onClick={() => handleClick("%")}>%</Container>
     </Key>
   );
 };

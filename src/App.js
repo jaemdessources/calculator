@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Buttons from "./components/Buttons";
 import InputField from "./components/InputField";
 import HistoryIcon from "./icons/HistoryIcon";
@@ -6,6 +7,9 @@ import styled from "styled-components";
 import "./App.css";
 
 function App() {
+  const [clickedButton, setClickedButton] = useState(null);
+  const btnClick = (btn) => setClickedButton({ btn });
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,9 +21,10 @@ function App() {
           <Display tabIndex={0}>
             <HistoryIcon />
             <Secondary>Ans = </Secondary>
-            <InputField />
+            <InputField clickedButton={clickedButton} />
           </Display>
-          <Buttons />
+          <Buttons handleClick={btnClick} />
+
           <hr />
         </Container>
       </main>

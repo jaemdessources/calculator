@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Sin = ({ inverse }) => {
-  //const value = ["sin", "arcsin"];
+const Sin = ({ inverse, handleClick }) => {
   return (
     <Key>
-      <Container className={inverse && "off"}>sin</Container>
-      <Container className={(!inverse && "off") + " inverse"}>
+      <Container className={inverse && "off"} onClick={() => handleClick("sin")}>
+        sin
+      </Container>
+      <Container className={(!inverse && "off") + " inverse"} onClick={() => handleClick("arcsin")}>
         sin<sup>{"\u2212"}1</sup>
       </Container>
     </Key>

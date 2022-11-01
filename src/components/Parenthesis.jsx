@@ -1,14 +1,10 @@
 import styled from "styled-components";
 import Key from "./Key";
-import input from "../lib/input";
 
-const Parenthesis = ({ type }) => {
-  const clickHandler = () => {
-    input(type);
-  };
+const Parenthesis = ({ type, handleClick }) => {
   return (
     <Key>
-      <Container onClick={clickHandler}>{type === "(" ? "(" : ")"}</Container>
+      <Container onClick={() => handleClick(type)}>{type === "(" ? "(" : ")"}</Container>
     </Key>
   );
 };

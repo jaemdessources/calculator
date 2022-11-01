@@ -1,15 +1,20 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import styled from "styled-components";
-
-let inputFieldRef;
-const InputField = () => {
+import input from "../lib/input";
+const InputField = ({ clickedButton }) => {
   const InputRef = useRef(null);
-  inputFieldRef = InputRef;
-  return <Field ref={InputRef}>0</Field>;
+  useEffect(() => {
+    input(clickedButton?.btn, InputRef);
+  }, [clickedButton]);
+
+  return (
+    <Field id="mainField" ref={InputRef}>
+      0
+    </Field>
+  );
 };
 
 export default InputField;
-export { inputFieldRef };
 
 const Field = styled.div`
   grid-column: 2 / 3;

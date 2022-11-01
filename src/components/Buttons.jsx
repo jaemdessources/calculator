@@ -22,45 +22,45 @@ import Ans from "./Ans";
 import Exp from "./Exp";
 import Pow from "./Pow";
 
-const Buttons = ({ inputRef }) => {
+const Buttons = ({ handleClick }) => {
   const [inverse, setInverse] = useState(false);
   return (
     <Container cellpadding="0" cellspacing="0">
       <AngleUnitSwitch />
-      <Factorial />
-      <Parenthesis type={"("} />
-      <Parenthesis type={")"} />
-      <Percent role={"%"} />
+      <Factorial handleClick={handleClick} />
+      <Parenthesis type={"("} handleClick={handleClick} />
+      <Parenthesis type={")"} handleClick={handleClick} />
+      <Percent role={"%"} handleClick={handleClick} />
       <CE />
       <Shift setInverse={setInverse} inverse={inverse} />
-      <Sin inverse={inverse} />
-      <Ln inverse={inverse} />
-      <Digit digit={"7"} />
-      <Digit digit={"8"} />
-      <Digit digit={"9"} />
-      <Operator sign={"÷"} />
-      <Pi />
-      <Cos inverse={inverse} />
-      <Log inverse={inverse} />
-      <Digit digit={"4"} />
-      <Digit digit={"5"} />
-      <Digit digit={"6"} />
+      <Sin inverse={inverse} handleClick={handleClick} />
+      <Ln inverse={inverse} handleClick={handleClick} />
+      <Digit digit={"7"} handleClick={handleClick} />
+      <Digit digit={"8"} handleClick={handleClick} />
+      <Digit digit={"9"} handleClick={handleClick} />
+      <Operator sign={"÷"} handleClick={handleClick} />
+      <Pi handleClick={handleClick} />
+      <Cos inverse={inverse} handleClick={handleClick} />
+      <Log inverse={inverse} handleClick={handleClick} />
+      <Digit digit={"4"} handleClick={handleClick} />
+      <Digit digit={"5"} handleClick={handleClick} />
+      <Digit digit={"6"} handleClick={handleClick} />
 
-      <Operator sign={"×"} />
+      <Operator sign={"×"} handleClick={handleClick} />
       <E />
-      <Tan inverse={inverse} />
-      <Sqrt inverse={inverse} />
-      <Digit digit={"1"} />
-      <Digit digit={"2"} />
-      <Digit digit={"3"} />
-      <Operator sign={"-"} />
-      <Ans inverse={inverse} />
-      <Exp />
-      <Pow inverse={inverse} />
-      <Digit digit={"0"} />
-      <DecimalPoint />
-      <Eq />
-      <Operator sign={"+"} />
+      <Tan inverse={inverse} handleClick={handleClick} />
+      <Sqrt inverse={inverse} handleClick={handleClick} />
+      <Digit digit={"1"} handleClick={handleClick} />
+      <Digit digit={"2"} handleClick={handleClick} />
+      <Digit digit={"3"} handleClick={handleClick} />
+      <Operator sign={"-"} handleClick={handleClick} />
+      <Ans inverse={inverse} handleClick={handleClick} />
+      <Exp handleClick={handleClick} />
+      <Pow inverse={inverse} handleClick={handleClick} />
+      <Digit digit={"0"} handleClick={handleClick} />
+      <DecimalPoint handleClick={handleClick} />
+      <Eq handleClick={handleClick} />
+      <Operator sign={"+"} handleClick={handleClick} />
     </Container>
   );
 };

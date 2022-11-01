@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import Key from "./Key";
-import input from "../lib/input";
-const Pi = () => {
-  const clickHandler = () => {
-    input("π");
-  };
+
+const Pi = ({ handleClick }) => {
   return (
     <Key>
-      <Container onClick={clickHandler}>π</Container>
+      <Container onClick={() => handleClick("π")}>π</Container>
     </Key>
   );
 };

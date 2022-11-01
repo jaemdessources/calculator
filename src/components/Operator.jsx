@@ -1,15 +1,10 @@
 import styled from "styled-components";
 import Key from "./Key";
 
-//lib
-import input from "../lib/input";
-const Operator = ({ sign }) => {
-  const clickHandler = () => {
-    input(sign);
-  };
+const Operator = ({ sign, handleClick }) => {
   return (
     <Key>
-      <Container onClick={clickHandler}>{sign}</Container>
+      <Container onClick={() => handleClick(sign)}>{sign}</Container>
     </Key>
   );
 };
