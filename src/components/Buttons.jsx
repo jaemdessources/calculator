@@ -47,7 +47,7 @@ const Buttons = ({ handleClick }) => {
       <Digit digit={"6"} handleClick={handleClick} />
 
       <Operator sign={"×"} handleClick={handleClick} />
-      <E />
+      <E handleClick={handleClick} />
       <Tan inverse={inverse} handleClick={handleClick} />
       <Sqrt inverse={inverse} handleClick={handleClick} />
       <Digit digit={"1"} handleClick={handleClick} />

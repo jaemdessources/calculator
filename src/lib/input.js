@@ -4,15 +4,15 @@ export default function input(btn, field) {
 
   let currentField = field.current.querySelector("#currentField") || field.current;
   let currentFieldTextContent = currentField.textContent;
-  let currentFieldLength = currentField.textContent.currentFieldTextContent;
+  let currentFieldLength = currentField.textContent.length;
   //console.log("the current field is ", currentField);
 
   //if the btn is a number [0-9], just insert it
   if (/[0-9]/.test(btn)) {
     if (currentFieldTextContent === "0") removeText(currentField, 1);
     //if the last element in the display field is not of the form " operator "
-    // another number or an opening parenthesis or a minus sign, add a mulitply
-    //  sign with space around before the number
+    // or another number or an opening parenthesis or a minus sign with nospace around before
+    // or if the display field is not empty  add a mulitply
     // Here we will use the texContent property instead of the CurrentFieldTextContent
     // variable to get the most updated value  because the text content could have
     // been modified
@@ -38,7 +38,7 @@ export default function input(btn, field) {
     // Field
     else if (/ ([+\-÷×]) /.test(currentFieldTextContent.slice(-3))) {
       //if the last operator is the same as the new operator just do nothing
-      if (currentFieldTextContent.slice(-2, -1) === btn) return field.current;
+      if (currentFieldTextContent.slice(-2, -1) === btn) return;
       //else if the last element is ' × ' or ' ÷ '
       else if (/[×÷]/.test(currentFieldTextContent.slice(-2, -1)) && btn === "-") {
         insertText(currentField, btn);
@@ -50,6 +50,8 @@ export default function input(btn, field) {
       }
     } else if (currentFieldTextContent.slice(-1) === "(" && btn === "-") {
       insertText(currentField, btn);
+    } else if (currentFieldTextContent.slice(-1) === "(" && btn !== "-") {
+      return;
     }
     //else if the last element is an empty <sup> element, remove it and insert
     // the sign in it's place

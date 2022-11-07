@@ -4,6 +4,8 @@ import input from "../lib/input";
 const InputField = ({ clickedButton }) => {
   const InputRef = useRef(null);
   useEffect(() => {
+    // every time clicked button has a new value we update the display
+    // imperatively with the input function.
     input(clickedButton?.btn, InputRef);
   }, [clickedButton]);
 
