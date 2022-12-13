@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Sqrt = ({ inverse }) => {
+const Sqrt = ({ inverse, handleClick }) => {
   return (
     <Key>
-      <Container className={inverse && "off"}>√</Container>
-      <Container className={`${!inverse ? "off" : ""} inverse`}>
+      <Container className={inverse && "off"} onClick={() => handleClick("√")}>
+        √
+      </Container>
+      <Container className={`${!inverse ? "off" : ""} inverse`} onClick={() => handleClick("x^2")}>
         x<sup>2</sup>
       </Container>
     </Key>

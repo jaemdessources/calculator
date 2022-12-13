@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Exp = () => {
+const Exp = ({ handleClick }) => {
   return (
     <Key>
-      <Container>EXP</Container>
+      <Container onClick={() => handleClick("E")}>EXP</Container>
     </Key>
   );
 };

@@ -24,8 +24,11 @@ import Pow from "./Pow";
 
 const Buttons = ({ handleClick }) => {
   const [inverse, setInverse] = useState(false);
+  const handleAllButtonsClick = () => {
+    if (inverse) setInverse(false);
+  };
   return (
-    <Container cellpadding="0" cellspacing="0">
+    <Container cellpadding="0" cellspacing="0" onClick={handleAllButtonsClick}>
       <AngleUnitSwitch />
       <Factorial handleClick={handleClick} />
       <Parenthesis type={"("} handleClick={handleClick} />

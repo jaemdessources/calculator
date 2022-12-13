@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Pow = ({ inverse }) => {
+const Pow = ({ inverse, handleClick }) => {
   return (
     <Key>
-      <Container className={inverse && "off"}>
+      <Container className={inverse && "off"} onClick={() => handleClick("x^y")}>
         x<sup>y</sup>
       </Container>
-      <Container className={`${!inverse ? "off" : ""}`}>
+      <Container className={`${!inverse ? "off" : ""}`} onClick={() => handleClick("y√x")}>
         <sup>y</sup>√x
       </Container>
     </Key>

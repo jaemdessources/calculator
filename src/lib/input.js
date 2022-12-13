@@ -1,23 +1,31 @@
+// THis is getting pretty imperative here. And we don't like that in React
+// When I'm done with all the functionalities
+//I'll come back to this to implement a more declarative version of it.
+//Maybe I'll turn this into a reducer that gives me a state inside of a useReducer() hook;
+
 export default function input(btn, field) {
   if (!btn || !field) return;
   //determines which DOM element will receive the input
   let mainField = field.current;
   let currentField = mainField.querySelector("#currentField") || mainField;
-  let currentFieldTextContent = currentField.textContent;
 
   //console.log("the current field is ", currentField);
-
-  //if the btn is a number [0-9], just insert it
-  if (/[0-9]/.test(btn)) {
-    if (currentFieldTextContent === "0") removeText(currentField, 1);
+  //Do we clear the placeholer 0 or not ?
+  if (!/Ans|x\^y|x\^2|y√x|%|[+\-÷×]/.test(btn) && mainField.textContent === "0") {
+    mainField.textContent = "";
+  }
+  if (currentField.textContent === "□") currentField.textContent = "";
+  if (/^[0-9]/.test(btn)) {
+    //if the btn is a number [0-9], just insert it
+    if (currentField.textContent === "0") removeText(currentField, 1);
     //if the last element in the display field is not of the form " operator "
     // or another number or an opening parenthesis or a minus sign with nospace around before
-    // or if the display field is not empty  add a mulitply
+    // or E or if the display field is not empty  add a mulitply
 
     if (
       !(
         / ([+\-÷×]) /.test(currentField.textContent.slice(-3)) ||
-        /[0-9(-]/.test(currentField.textContent.slice(-1)) ||
+        /[0-9(-E]/.test(currentField.textContent.slice(-1)) ||
         /^$/.test(currentField.textContent)
       )
     ) {
@@ -25,72 +33,117 @@ export default function input(btn, field) {
     } else {
       insertText(currentField, btn);
     }
+    return;
+  }
+
+  //if the key is not a number and the currentField is a sup tag we need
+  //to set the currentField to the parent element of the sup tag
+  if (currentField.nodeName === "SUP") {
+    currentField.id = "";
+    setNextCurrentFieldId(currentField);
+    currentField = mainField.querySelector("#currentField") || mainField;
   }
   //If the btn is an operator
-  else if (/[+\-÷×]/.test(btn)) {
+  if (/[+\-÷×]/.test(btn)) {
     //if there's a minus sign with no space around as the last
     // input element
-    if (currentFieldTextContent.slice(-1) === "-") return;
+    if (currentField.textContent.slice(-1) === "-") return;
     //if there's another operator as the last element in the input
     // Field
-    else if (/ ([+\-÷×]) /.test(currentFieldTextContent.slice(-3))) {
+    else if (/ ([+\-÷×]) /.test(currentField.textContent.slice(-3))) {
       //if the last operator is the same as the new operator just do nothing
-      if (currentFieldTextContent.slice(-2, -1) === btn) return;
+      if (currentField.textContent.slice(-2, -1) === btn) return;
       //else if the last element is ' × ' or ' ÷ '
-      else if (/[×÷]/.test(currentFieldTextContent.slice(-2, -1)) && btn === "-") {
+      else if (/[×÷]/.test(currentField.textContent.slice(-2, -1)) && btn === "-") {
         insertText(currentField, btn);
       }
       // else if the last element in the display is an operator and the sign is not -
-      else if (btn !== "-" || /[-+]/.test(currentFieldTextContent.slice(-2, -1))) {
+      else if (btn !== "-" || /[-+]/.test(currentField.textContent.slice(-2, -1))) {
         removeText(currentField, 0, -3);
         insertText(currentField, ` ${btn} `);
       }
-    } else if (currentFieldTextContent.slice(-1) === "(" && btn === "-") {
+    } else if (currentField.textContent.slice(-1) === "(" && btn === "-") {
       insertText(currentField, btn);
-    } else if (currentFieldTextContent.slice(-1) === "(" && btn !== "-") {
+    } else if (currentField.textContent.slice(-1) === "(" && btn !== "-") {
       return;
     }
-    //else if the last element is an empty <sup> element, remove it and insert
-    // the sign in it's place
-    else if (
-      currentField.lastElementChild?.nodeName === "SUP" &&
-      currentField.lastElementChild?.textContent === ""
-    ) {
-      currentField.removeChild(currentField.lastElementChild);
-      insertText(currentField, ` ${btn} `);
-    } //else if the last element of the display is an opening parenthesis
+    // //else if the last element is an empty <sup> element, remove it and insert
+    // // the sign in it's place
+    // else if (
+    //   currentField.lastElementChild?.nodeName === "SUP" &&
+    //   currentField.lastElementChild?.textContent === ""
+    // ) {
+    //   currentField.removeChild(currentField.lastElementChild);
+    //   insertText(currentField, ` ${btn} `);
+    // } //else if the last element of the display is an opening parenthesis
     else {
       insertText(currentField, ` ${btn} `);
     }
+    return;
   }
   //else if btn is an (
-  else if (btn === "(") {
+  if (btn === "(") {
     insertOpeningParenthesis(currentField, currentField, mainField);
+    return;
   }
   //elese if btn is a )
-  else if (btn === ")") {
+  if (btn === ")") {
     insertClosingParenthesis(currentField, currentField, mainField);
+    return;
   }
   //if the btn is pi or e check if the last character in the input isn't a pi or a e
-  else if (/[πe]/.test(btn)) {
-    if (/[πe]/.test(currentFieldTextContent.slice(-1))) {
+  if (/[πe]/.test(btn)) {
+    if (/[πe]/.test(currentField.textContent.slice(-1))) {
       insertText(currentField, " × ");
     }
-    let element = document.createElement("b");
-    element.textContent = btn;
-    currentField.appendChild(element);
+    let container = document.createElement("b");
+    //check if it is not a power of e key and change output if it is
+
+    if (btn === "e^x") {
+      if (currentField.id !== "mainField") currentField.removeAttribute("id");
+      let sup = document.createElement("sup");
+      sup.id = "currentField";
+      container.textContent = "e";
+      container.appendChild(sup);
+    } else container.textContent = btn;
+    currentField.appendChild(container);
+    return;
   }
   //if the btn is sin, cos,tan,acrsin,arcos,arctan,log or ln
-  else if (/sin|cos|tan|arcsin|arccos|arctan|log|ln/.test(btn)) {
-    let element = document.createElement("span");
-    element.setAttribute("data-func", btn);
-    if (/ ([+\-÷×]) /.test(currentFieldTextContent.slice(-3)) || currentFieldTextContent.slice(-1) === "-") {
-      element.textContent = btn;
+  if (/sin|cos|tan|log|ln|√/.test(btn)) {
+    let container = document.createElement("span");
+    container.setAttribute("data-func", btn);
+    if (
+      / ([+\-÷×]) /.test(currentField.textContent.slice(-3)) ||
+      /-|\(/.test(currentField.textContent.slice(-1))
+    ) {
+      container.textContent = btn;
     } else {
-      element.textContent = ` ${btn}`;
+      container.textContent = ` ${btn}`;
     }
-    currentField.appendChild(element);
-    insertOpeningParenthesis(element, currentField, mainField);
+    currentField.appendChild(container);
+    insertOpeningParenthesis(container, currentField, mainField);
+    return;
+  }
+
+  if (btn === "x^2") {
+    if (/\(|-|\s|%/.test(currentField.textContent.slice(-1))) return;
+    let sup = document.createElement("sup");
+    sup.textContent = "2";
+    sup.setAttribute("data-func", "square");
+    currentField.appendChild(sup);
+    return;
+  }
+
+  if (btn === "x^y") {
+    if (/\(|-|\s|%/.test(currentField.textContent.slice(-1))) return;
+    if (currentField.id !== "mainField") currentField.removeAttribute("id");
+    let sup = document.createElement("sup");
+    sup.id = "currentField";
+    sup.textContent = "□";
+    sup.setAttribute("data-func", "power");
+    currentField.appendChild(sup);
+    return;
   } else {
     insertText(currentField, btn);
   }
@@ -118,7 +171,6 @@ function removeText(currentField, start, end) {
 }
 
 function insertOpeningParenthesis(element, currentField, mainField) {
-  if (currentField.textContent === "0") removeText(currentField, 1);
   // We create a span element assign the "currentField" id to it set the textContent
   // to "(" then we remove the "currentField" id from the actual current field append
   // then span to the previous current field. Finally we insert a placeholder
@@ -146,7 +198,7 @@ function insertClosingParenthesis(element, currentField, mainField) {
   insertText(element, ")");
   removeplaceholderClosingParenthesis(mainField);
   currentField.removeAttribute("id");
-  setNextCurrentField(currentField);
+  setNextCurrentFieldId(currentField);
 }
 
 function insertplaceholderClosingParenthesis(mainField) {
@@ -167,14 +219,20 @@ function removeplaceholderClosingParenthesis(mainField) {
   if (placeholderParenthesis.textContent === "") mainField.removeChild(placeholderParenthesis);
 }
 
-function setNextCurrentField(currentField) {
+function setNextCurrentFieldId(currentField) {
   if (
     currentField.parentElement.id !== "mainField" &&
     currentField.id !== "mainField" &&
-    !currentField.parentElement.dataset.func
+    !currentField.parentElement.dataset.func &&
+    !/SUP|B/.test(currentField.parentElement.nodeName)
   ) {
     currentField.parentElement.id = "currentField";
-  } else if (currentField.id === "mainField" || currentField.parentElement.id === "mainField") {
-    return;
-  } else setNextCurrentField(currentField.parentElement);
+  } else if (
+    currentField.parentElement.id === "mainField" &&
+    !/SUP|B/.test(currentField.nodeName) &&
+    !currentField.dataset.func
+  ) {
+    currentField.id = "currentField";
+  } else if (currentField.id === "mainField") {
+  } else setNextCurrentFieldId(currentField.parentElement);
 }
