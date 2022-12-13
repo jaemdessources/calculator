@@ -1,10 +1,10 @@
 export default function input(btn, field) {
   if (!btn || !field) return;
   //determines which DOM element will receive the input
-
-  let currentField = field.current.querySelector("#currentField") || field.current;
+  let mainField = field.current;
+  let currentField = mainField.querySelector("#currentField") || mainField;
   let currentFieldTextContent = currentField.textContent;
-  let currentFieldLength = currentField.textContent.length;
+
   //console.log("the current field is ", currentField);
 
   //if the btn is a number [0-9], just insert it
@@ -13,9 +13,6 @@ export default function input(btn, field) {
     //if the last element in the display field is not of the form " operator "
     // or another number or an opening parenthesis or a minus sign with nospace around before
     // or if the display field is not empty  add a mulitply
-    // Here we will use the texContent property instead of the CurrentFieldTextContent
-    // variable to get the most updated value  because the text content could have
-    // been modified
 
     if (
       !(
@@ -65,34 +62,16 @@ export default function input(btn, field) {
     else {
       insertText(currentField, ` ${btn} `);
     }
-  } else if (btn === "(") {
-    if (currentFieldTextContent === "0") removeText(currentField, 1);
-    // We create a span element assign the "currentField" id to it set the textContent
-    // to "(" then we remove the "currentField" id from the actual current field append
-    // then span to the previous current field. Finally we insert a placeholder
-    // parenthesis
-    let element = document.createElement("span");
-    element.id = "currentField";
-    insertText(element, "(");
-    if (currentField.id !== "mainField") currentField.removeAttribute("id");
-    currentField.appendChild(element);
-    currentField = element;
-    insertplaceholderClosingParenthesis(field);
-  } else if (btn === ")") {
-    //if there is no placeholder closing parenthesis do nothing
-    if (!document.querySelector("#placeholderClosingParenthesis")) return;
-    // we add ")" to  the current field's  content, remove one placeholder closing parenthesis
-    // remove the "currentField" id from the currentField and add it to the parent Element if it's
-    // id is not mainField
-    // then we set current Field to the parent Element.
-    insertText(currentField, ")");
-    removeplaceholderClosingParenthesis(field);
-    currentField.removeAttribute("id");
-    if (currentField.parentElement.id !== "mainField") currentField.parentElement.id = "currentField";
-    currentField = currentField.parentElement;
+  }
+  //else if btn is an (
+  else if (btn === "(") {
+    insertOpeningParenthesis(currentField, currentField, mainField);
+  }
+  //elese if btn is a )
+  else if (btn === ")") {
+    insertClosingParenthesis(currentField, currentField, mainField);
   }
   //if the btn is pi or e check if the last character in the input isn't a pi or a e
-  //
   else if (/[πe]/.test(btn)) {
     if (/[πe]/.test(currentFieldTextContent.slice(-1))) {
       insertText(currentField, " × ");
@@ -100,6 +79,18 @@ export default function input(btn, field) {
     let element = document.createElement("b");
     element.textContent = btn;
     currentField.appendChild(element);
+  }
+  //if the btn is sin, cos,tan,acrsin,arcos,arctan,log or ln
+  else if (/sin|cos|tan|arcsin|arccos|arctan|log|ln/.test(btn)) {
+    let element = document.createElement("span");
+    element.setAttribute("data-func", btn);
+    if (/ ([+\-÷×]) /.test(currentFieldTextContent.slice(-3)) || currentFieldTextContent.slice(-1) === "-") {
+      element.textContent = btn;
+    } else {
+      element.textContent = ` ${btn}`;
+    }
+    currentField.appendChild(element);
+    insertOpeningParenthesis(element, currentField, mainField);
   } else {
     insertText(currentField, btn);
   }
@@ -126,20 +117,64 @@ function removeText(currentField, start, end) {
   }
 }
 
-function insertplaceholderClosingParenthesis(field) {
-  let element = document.querySelector("#placeholderClosingParenthesis");
-  if (element) element.textContent += ")";
+function insertOpeningParenthesis(element, currentField, mainField) {
+  if (currentField.textContent === "0") removeText(currentField, 1);
+  // We create a span element assign the "currentField" id to it set the textContent
+  // to "(" then we remove the "currentField" id from the actual current field append
+  // then span to the previous current field. Finally we insert a placeholder
+  // parenthesis
+  let container = document.createElement("span");
+  container.id = "currentField";
+  insertText(container, "(");
+  if (currentField.id !== "mainField") currentField.removeAttribute("id");
+  element.appendChild(container);
+  // currentField = element;
+  insertplaceholderClosingParenthesis(mainField);
+}
+
+function insertClosingParenthesis(element, currentField, mainField) {
+  //if there is no placeholder closing parenthesis do nothing
+  //same if the current field is empty.
+  console.log(element.textContent);
+  if (!document.querySelector("#placeholderClosingParenthesis") || element.textContent === "(") {
+    return;
+  }
+  // we add ")" to  the current field's  content, remove one placeholder closing parenthesis
+  // remove the "currentField" id from the currentField and add it to the parent Element if it's
+  // id is not mainField
+  // then we set current Field to the parent Element.
+  insertText(element, ")");
+  removeplaceholderClosingParenthesis(mainField);
+  currentField.removeAttribute("id");
+  setNextCurrentField(currentField);
+}
+
+function insertplaceholderClosingParenthesis(mainField) {
+  let placeholderParenthesis = document.querySelector("#placeholderClosingParenthesis");
+  if (placeholderParenthesis) placeholderParenthesis.textContent += ")";
   else {
-    element = document.createElement("span");
-    element.id = "placeholderClosingParenthesis";
-    element.textContent += ")";
-    field.current.appendChild(element);
+    placeholderParenthesis = document.createElement("span");
+    placeholderParenthesis.id = "placeholderClosingParenthesis";
+    placeholderParenthesis.textContent += ")";
+    mainField.appendChild(placeholderParenthesis);
   }
 }
 
-function removeplaceholderClosingParenthesis(field) {
-  let element = document.querySelector("#placeholderClosingParenthesis");
-  let parenthesisCount = element.textContent.length;
-  element.textContent = element.textContent.slice(0, parenthesisCount - 1);
-  if (element.textContent === "") field.current.removeChild(element);
+function removeplaceholderClosingParenthesis(mainField) {
+  let placeholderParenthesis = document.querySelector("#placeholderClosingParenthesis");
+  let parenthesisCount = placeholderParenthesis.textContent.length;
+  placeholderParenthesis.textContent = placeholderParenthesis.textContent.slice(0, parenthesisCount - 1);
+  if (placeholderParenthesis.textContent === "") mainField.removeChild(placeholderParenthesis);
+}
+
+function setNextCurrentField(currentField) {
+  if (
+    currentField.parentElement.id !== "mainField" &&
+    currentField.id !== "mainField" &&
+    !currentField.parentElement.dataset.func
+  ) {
+    currentField.parentElement.id = "currentField";
+  } else if (currentField.id === "mainField" || currentField.parentElement.id === "mainField") {
+    return;
+  } else setNextCurrentField(currentField.parentElement);
 }

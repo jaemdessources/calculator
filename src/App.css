@@ -32,7 +32,7 @@ body {
 }
 
 #placeholderClosingParenthesis {
-  color: rgb(204, 204, 204);
+  color: rgb(204 204 204 / 60%);
 }
 
 hr {

@@ -17,16 +17,16 @@ function App() {
         <h1>The calculator</h1>
       </header>
       <main>
-        <Container>
-          <Display tabIndex={0}>
+        <StyledContainer>
+          <StyledDisplay tabIndex={0}>
             <HistoryIcon />
-            <Secondary>Ans = </Secondary>
+            <StyledSecondaryField>Ans = </StyledSecondaryField>
             <InputField clickedButton={clickedButton} />
-          </Display>
+          </StyledDisplay>
           <Buttons handleClick={btnClick} />
 
           <hr />
-        </Container>
+        </StyledContainer>
       </main>
     </div>
   );
@@ -34,7 +34,7 @@ function App() {
 
 export default App;
 
-const Container = styled.div`
+const StyledContainer = styled.div`
   width: 40.75rem;
   margin: 2rem auto;
 
@@ -43,7 +43,7 @@ const Container = styled.div`
   }
 `;
 
-const Display = styled.div`
+const StyledDisplay = styled.div`
   display: grid;
   grid-template-columns: 5% 95%;
   grid-template-rows: 30% 70%;
@@ -63,7 +63,7 @@ const Display = styled.div`
   }
 `;
 
-const Secondary = styled.span`
+const StyledSecondaryField = styled.span`
   grid-column: 2 / 3;
   grid-row: 1 / 2;
   text-align: right;

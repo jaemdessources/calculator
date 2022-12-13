@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Ln = ({ inverse }) => {
+const Ln = ({ inverse, handleClick }) => {
   return (
     <Key>
-      <Container className={inverse && "off"}>ln</Container>
-      <Container className={`${!inverse ? "off" : ""} inverse`}>
+      <Container className={inverse && "off"} onClick={() => handleClick("ln")}>
+        ln
+      </Container>
+      <Container className={`${!inverse ? "off" : ""} inverse`} onClick={() => handleClick("e^x")}>
         e<sup>x</sup>
       </Container>
     </Key>

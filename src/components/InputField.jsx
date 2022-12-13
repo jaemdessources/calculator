@@ -10,8 +10,10 @@ const InputField = ({ clickedButton }) => {
   }, [clickedButton]);
 
   return (
-    <Field id="mainField" ref={InputRef}>
-      0
+    <Field>
+      <div id="mainField" ref={InputRef}>
+        0
+      </div>
     </Field>
   );
 };
@@ -19,13 +21,18 @@ const InputField = ({ clickedButton }) => {
 export default InputField;
 
 const Field = styled.div`
-  grid-column: 2 / 3;
+  grid-column: 1 / 3;
   grid-row: 2 / 3;
   width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
   margin-right: 0.5rem;
   font-size: 30px;
   text-align: right;
   align-items: end;
   align-self: end;
   color: #e8eaed;
+  div {
+    float: right;
+  }
 `;

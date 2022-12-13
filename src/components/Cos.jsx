@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Cos = ({ inverse }) => {
+const Cos = ({ inverse, handleClick }) => {
   return (
     <Key>
-      <Container className={inverse && "off"}>cos</Container>
-      <Container className={`${!inverse ? "off" : ""} inverse`}>
+      <Container className={inverse && "off"} onClick={() => handleClick("cos")}>
+        cos
+      </Container>
+      <Container className={`${!inverse ? "off" : ""} inverse`} onClick={() => handleClick("arccos")}>
         cos<sup>{"\u2212"}1</sup>
       </Container>
     </Key>

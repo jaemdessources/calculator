@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Key from "./Key";
-const Log = ({ inverse }) => {
+const Log = ({ inverse, handleClick }) => {
   return (
     <Key>
-      <Container className={inverse && "off"}>log</Container>
-      <Container className={`${!inverse ? "off" : ""} inverse`}>
+      <Container className={inverse && "off"} onClick={() => handleClick("log")}>
+        log
+      </Container>
+      <Container className={`${!inverse ? "off" : ""} inverse`} onClick={() => handleClick("10^x")}>
         10<sup>x</sup>
       </Container>
     </Key>
